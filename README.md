@@ -32,16 +32,7 @@ administrator 管理员用例
 
 用户功能结构图
 
-
-```mermaid
-graph LR;
-A[customer]-->B[Read product information ];
-A[customer]-->C[Insert coin];
-A[customer]-->D[Press product button];
-A[customer]-->E[Press return button];
-A[customer]-->F[Open service menu need code required];
-A[customer]-->G[Quit];
-```
+<img src="http://yuml.me/diagram/nofunky/class/[customer]->[Quit],[customer]->[Open service menu need code required],[customer]->[Press return button],[customer]->[Press product button],[customer]->[Insert coin],[customer]->[Read product information]" >
 
 
 ### product 商品结构体
