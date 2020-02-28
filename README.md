@@ -34,13 +34,13 @@ administrator 管理员用例
 
 
 ```mermaid
-graph LR
-A[customer]-->B[Read product information ]
-A[customer]-->C[Insert coin]
-A[customer]-->D[Press product button]
-A[customer]-->E[Press return button]
-A[customer]-->F[Open service menu need code required]
-A[customer]-->G[Quit]
+graph LR;
+A[customer]-->B[Read product information ];
+A[customer]-->C[Insert coin];
+A[customer]-->D[Press product button];
+A[customer]-->E[Press return button];
+A[customer]-->F[Open service menu need code required];
+A[customer]-->G[Quit];
 ```
 
 
