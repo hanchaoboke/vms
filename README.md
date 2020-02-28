@@ -51,7 +51,7 @@ administrator 管理员用例
 
 系统流程图
 
-<img src="http://yuml.me/diagram/nofunky/class/[Begin]->[switch choice],[switch choice]->[0. Quit],[switch choice]->[9. Open service menu (code required)],[switch choice]->[4. Press return button],[switch choice]->[3. Press product button],[switch choice]->[2. Insert coin],[switch choice]->[1. Read product information],[0. Quit]->[exit(0)],[9. Open service menu (code required)]->[true:admin,false:return],[4. Press return button]->[return all coin],[3. Press product button]->[buy product],[2. Insert coin]->[choice coin],[1. Read product information]->[show all product information]" >
+<img src="http://yuml.me/diagram/nofunky/class/[Begin]->[switch choice],[switch choice]->[0. Quit],[switch choice]->[9. Open service menu (code required)],[switch choice]->[4. Press return button],[switch choice]->[3. Press product button],[switch choice]->[2. Insert coin],[switch choice]->[1. Read product information],[0. Quit]->[exit(0)],[9. Open service menu (code required)]->[true is admin],[4. Press return button]->[return all coin],[3. Press product button]->[buy product],[2. Insert coin]->[choice coin],[1. Read product information]->[show all product information],[true is admin]->[0. Go back],[true is admin]->[4. Change product],[true is admin]->[3. Refill product],[true is admin]->[2. Withdraw all money],[true is admin]->[1. Inspect machine status],[0. Go back]->[show which choice],[4. Change product]->[change product information],[3. Refill product]->[number is MAX],[2. Withdraw all money]->[get all coin],[1. Inspect machine status]->[show coin and product information]" >
 
 
 ### product 商品结构体
