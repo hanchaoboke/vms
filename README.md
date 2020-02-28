@@ -23,23 +23,23 @@ administrator 管理员用例
 本系统的功能模块由用户和管理员两部分组成  
 
 用户模块主要功能  
-* Read product information 
-* Insert coin
-* Press product button
-* Press return button
-* Open service menu (code required)
-* Quit
+* Read product information ：查看商品信息
+* Insert coin ：投入硬币
+* Press product button ：选择商品购买
+* Press return button ：进行退币
+* Open service menu (code required) ：打开管理员页面（密码验证）
+* Quit ：退出系统
 
 用户功能结构图
 
 <img src="http://yuml.me/diagram/nofunky/class/[customer]->[Quit],[customer]->[Open service menu need code required],[customer]->[Press return button],[customer]->[Press product button],[customer]->[Insert coin],[customer]->[Read product information]" >
 
 管理员模块主要功能  
-* Inspect machine status
-* Withdraw all money
-* Refill product
-* Change product
-* Go back
+* Inspect machine status ：查看机器状态
+* Withdraw all money ：拿出所有硬币
+* Refill product ：补充商品库存
+* Change product ：增加新的商品取代原有商品
+* Go back ：返回用户菜单
 
 管理员功能结构图
 
