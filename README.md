@@ -33,6 +33,16 @@ administrator 管理员用例
 用户功能结构图
 
 <img src="http://yuml.me/diagram/nofunky/class/[customer]->[Quit],[customer]->[Open service menu need code required],[customer]->[Press return button],[customer]->[Press product button],[customer]->[Insert coin],[customer]->[Read product information]" >
+管理员模块主要功能
+* Inspect machine status
+* Withdraw all money
+* Refill product
+* Change product
+* Go back
+
+管理员功能结构图
+
+<img src="http://yuml.me/diagram/nofunky/class/[administrator]->[Go back],[administrator]->[Change product],[administrator]->[Refill product],[administrator]->[Withdraw all money],[administrator]->[Inspect machine status]" >
 
 
 ### product 商品结构体
