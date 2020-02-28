@@ -18,3 +18,13 @@ C | Tea ($5) (2 left)
 D | Water ($8) (1 left)
 E | Coffee ($7) (9 left)
 
+### alterProduct 商品添加函数
+
+void alterProduct(int productCode, char productName[], int productPrice, int productNumber);
+
+参数名 | 描述
+----|----
+productCode | 商品编号，1代表A，2代表B···
+productName[] | 商品名称，最长20字符
+productPrice | 商品价格，只接受整数
+productNumber | 商品库存
