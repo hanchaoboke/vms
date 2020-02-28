@@ -33,7 +33,7 @@ administrator 管理员用例
 用户功能结构图
 
 
-```
+```mermaid
 graph LR
 A[customer]-->B[Read product information ]
 A[customer]-->C[Insert coin]
