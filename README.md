@@ -45,6 +45,14 @@ administrator 管理员用例
 
 <img src="http://yuml.me/diagram/nofunky/class/[administrator]->[Go back],[administrator]->[Change product],[administrator]->[Refill product],[administrator]->[Withdraw all money],[administrator]->[Inspect machine status]" >
 
+## 3 系统的详细设计与实现
+
+### 3.1 系统流程设计与实现
+
+系统流程图
+
+<img src="http://yuml.me/diagram/nofunky/class/[Begin]->[switch choice],[switch choice]->[0. Quit],[switch choice]->[9. Open service menu (code required)],[switch choice]->[4. Press return button],[switch choice]->[3. Press product button],[switch choice]->[2. Insert coin],[switch choice]->[1. Read product information],[0. Quit]->[exit(0)],[9. Open service menu (code required)]->[true:admin,false:return],[4. Press return button]->[return all coin],[3. Press product button]->[buy product],[2. Insert coin]->[choice coin],[1. Read product information]->[show all product information]" >
+
 
 ### product 商品结构体
 
