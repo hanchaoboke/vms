@@ -69,7 +69,7 @@ administrator 管理员用例
 
 依照前面关于数据的需求，可以设计商品信息实体，硬币信息实体，管理员信息实体
 
-* 商品信息实体
+1. 商品信息实体
 
 <img src="http://yuml.me/diagram/nofunky/activity/[Product]->(productName),[Product]->(productPrice),[Product]->(productNumber)" >
 
@@ -94,7 +94,7 @@ C | Tea ($5) (2 left)
 D | Water ($8) (1 left)
 E | Coffee ($7) (9 left)
 
-* 硬币信息实体
+2. 硬币信息实体
 
 <img src="http://yuml.me/diagram/nofunky/activity/[Coin]->(coinValueOne),[Coin]->(coinValueTwo),[Coin]->(coinValueFive),[Coin]->(coinValueTen),[Coin]->(coinProfit),[Coin]->(conDeposit)" >
 
@@ -118,7 +118,7 @@ define VALUETEN 10
 
 Coin coin;
 
-* 管理员信息实体
+3. 管理员信息实体
 
 <img src="http://yuml.me/diagram/nofunky/activity/[administrator]->(adminLoginPassword)" >
 
