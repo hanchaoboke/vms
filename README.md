@@ -25,6 +25,7 @@ administrator 管理员用例
 本系统的功能模块由用户和管理员两部分组成  
 
 用户模块主要功能  
+用户进入系统可以使用以下功能：  
 * Read product information ：查看商品信息
 * Insert coin ：投入硬币
 * Press product button ：选择商品购买
@@ -36,7 +37,8 @@ administrator 管理员用例
 
 <img src="http://yuml.me/diagram/nofunky/class/[customer]->[Quit],[customer]->[Open service menu need code required],[customer]->[Press return button],[customer]->[Press product button],[customer]->[Insert coin],[customer]->[Read product information]" >
 
-管理员模块主要功能  
+管理员模块主要功能   
+管理员通过密码验证后可以使用以下功能：   
 * Inspect machine status ：查看机器状态
 * Withdraw all money ：拿出所有硬币
 * Refill product ：补充商品库存
@@ -51,9 +53,13 @@ administrator 管理员用例
 
 ### 3.1 系统流程设计与实现
 
-系统流程图
+编程过程一般按照流程逐步编写，程序的每一个功能都是独立的模块，本体统功能流程图如下
 
 <img src="http://yuml.me/diagram/nofunky/class/[Begin]->[switch choice],[switch choice]->[0. Quit],[switch choice]->[9. Open service menu (code required)],[switch choice]->[4. Press return button],[switch choice]->[3. Press product button],[switch choice]->[2. Insert coin],[switch choice]->[1. Read product information],[0. Quit]->[exit(0)],[9. Open service menu (code required)]->[true is admin],[4. Press return button]->[return all coin],[3. Press product button]->[buy product],[2. Insert coin]->[choice coin],[1. Read product information]->[show all product information],[true is admin]->[0. Go back],[true is admin]->[4. Change product],[true is admin]->[3. Refill product],[true is admin]->[2. Withdraw all money],[true is admin]->[1. Inspect machine status],[0. Go back]->[show which choice],[4. Change product]->[change product information],[3. Refill product]->[number is MAX],[2. Withdraw all money]->[get all coin],[1. Inspect machine status]->[show coin and product information]" >
+
+### 3.2 数据库设计？
+
+把结构体比作比作数据库表，结构体属性比作数据库表中的字段，依照本系统需求，合理的设计可以方便的进行数据修改，包括商品信息，硬币相关信息，管理员信息
 
 
 ### product 商品结构体
