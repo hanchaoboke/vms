@@ -62,7 +62,7 @@ administrator 管理员用例
 把结构体比作数据库表，结构体属性比作数据库表中的字段，依照本系统需求，合理的设计可以方便的进行数据修改，包括商品信息，硬币相关信息，管理员信息，其需求包括
 
 1. 商品信息包括商品名、商品单价、商品库存信息
-2. 硬币信息包括硬币面值、投入硬币金额记录、盈利金额记录
+2. 硬币信息包括硬币面值、硬币营收金额记录、暂存硬币金额记录
 3. 管理员信息包括管理员密码
 
 #### 3.2.1 结构设计
@@ -74,7 +74,7 @@ administrator 管理员用例
 <img src="http://yuml.me/diagram/nofunky/activity/[Product]->(productName),[Product]->(productPrice),[Product]->(productNumber)" >
 
 
-### product 商品结构体
+#### Product 商品结构体
 
 属性名 | 描述
 ----|----
@@ -82,9 +82,9 @@ productName | 商品名
 productPrice | 商品价格
 productNumber | 商品库存
 
-PRODUCTMAX 商品库存最大值 10
+define PRODUCTNUMBERMAX 商品库存最大值 10
 
-#### 商品初始化,分别命名为A，B，C，D，E
+#### 商品结构体初始化,分别命名为A，B，C，D，E
 
 商品名称 | 描述
 ----|----
@@ -93,6 +93,46 @@ B | Cola($6)(1left)
 C | Tea ($5) (2 left)
 D | Water ($8) (1 left)
 E | Coffee ($7) (9 left)
+
+* 硬币信息实体
+
+<img src="http://yuml.me/diagram/nofunky/activity/[Coin]->(coinValueOne),[Coin]->(coinValueTwo),[Coin]->(coinValueFive),[Coin]->(coinValueTen),[Coin]->(coinProfit),[Coin]->(conDeposit)" >
+
+#### Coin 硬币信息结构体
+
+属性名 | 描述
+----|----
+coinValueOne | 硬币面值1元
+coinValueTwo | 硬币面值2元
+coinValueFive | 硬币面值5元
+coinValueTen | 硬币面值10元
+coinProfit | 硬币营收金额
+conDeposit | 暂存硬币金额
+
+define VALUEONE 1  
+define VALUETWO 2  
+define VALUEFIVE 5  
+define VALUETEN 10  
+
+#### 硬币信息结构体初始化
+
+Coin coin;
+
+* 管理员信息实体
+
+<img src="http://yuml.me/diagram/nofunky/activity/[administrator]->(adminLoginPassword)" >
+
+#### Administrator 管理员信息结构体
+
+属性名 | 描述
+----|----
+adminLoginPassword | 管理员密码
+
+define ADMINPASSWORD 1110
+
+#### 管理员信息结构体初始化
+
+Administrator admin;
 
 ### alterProduct 商品添加函数
 
