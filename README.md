@@ -134,6 +134,14 @@ define ADMINPASSWORD 1110  管理员默认密码
 
 Administrator admin;
 
+### 3.3 界面设计
+
+#### 3.3.1 顾客使用主界面
+
+顾客进入系统，就会显示售货机页面和操作选择页面。售货机页面显示标题，商品代号，价格，商品状态，投币口。操作选择页面有6种选择。
+
+
+
 ### alterProduct 商品添加函数
 
     void alterProduct(int productCode, char productName[], int productPrice);
