@@ -370,7 +370,7 @@ void PressReturnButton(){
 
 管理员用户界面流程图，流程如下
 
-<img src="http://yuml.me/diagram/nofunky/activity/(start)->(verify password)->(show choice)->(insert choice)-><a>-1>(Inspect machine status)->(end),<a>-2>(Withdraw all money)->(end),<a>[which choice]-3>(Refill product)->(end),<a>-4>()->(end),<a>-9>(Open service menu)->(end),<a>-0>(Quit)->(end),<a>-other>(show choice)" >ß
+<img src="http://yuml.me/diagram/nofunky/activity/(start)->(verify password)->(show choice)-><a>-1>(InspectMachineStatus)->(end),<a>[which choice]-2>(WithdrawAllMoney)->(end),<a>-3>(RefillProduct)->(end),<a>-4>(ChangeProduct)->(end),<a>-0>(GoBack)->(end),<a>-other>(show choice)" >
 
 运行界面
 
@@ -422,27 +422,188 @@ void administratorPage()
 }
 ```
 
+##### 3.3.6.1 查看机器状态
+
+用户查看机器的各种状态，盈利金额，投币口硬币金额，商品代码，名称，单价，库存
+
+运行界面
+
+关键代码
+
+```
+/*
+查看机器状态
+*/
+void InspectMachineStatus(){
+    puts("(9-1) Machine status");
+    printf("Amount of revenue: $ %d",coin.coinProfit);
+    printf("Amount of inserted coins: $ %d",coin.conDeposit);
+    printf("A. %s ($ %d) ( %d left)",A.productName,A.productPrice,A.productNumber);
+    printf("B. %s ($ %d) ( %d left)",B.productName,B.productPrice,B.productNumber);
+    printf("C. %s ($ %d) ( %d left)",C.productName,C.productPrice,C.productNumber);
+    printf("D. %s ($ %d) ( %d left)",D.productName,D.productPrice,D.productNumber);
+    printf("E. %s ($ %d) ( %d left)",E.productName,E.productPrice,E.productNumber);
+    puts("\n");
+}
+```
+
+##### 3.3.6.2 取出盈利的硬币
+
+用户取出盈利硬币和投币口里的硬币
+
+运行界面
+
+关键代码
+
+```
+/*
+取出盈利的硬币
+*/
+void WithdrawAllMoney(){
+    coin.coinProfit = 0;
+    coin.conDeposit = 0;
+}
+```
+
+##### 3.3.6.3 补充商品库存
+
+用户需要选择要添加库存的商品，添加库存至满
+
+运行界面
+
+关键代码
+
+```
+/*
+moveProductNumber 商品库存修改函数
+*/
+void moveProductNumber(int productCode){
+    switch (productCode)
+    {
+    case 1:
+        A.productNumber = PRODUCTNUMBERMAX;
+        puts("You have refilled product A to full.\n");
+        break;
+    case 2:
+        B.productNumber = PRODUCTNUMBERMAX;
+        puts("You have refilled product B to full.\n");
+        break;
+    case 3:
+        C.productNumber = PRODUCTNUMBERMAX;
+        puts("You have refilled product C to full.\n");
+        break;
+    case 4:
+        D.productNumber = PRODUCTNUMBERMAX;
+        puts("You have refilled product D to full.\n");
+        break;
+    case 5:
+        E.productNumber = PRODUCTNUMBERMAX;
+        puts("You have refilled product E to full.\n");
+        break;
+    }
+}
+/*
+补充商品库存
+*/
+void RefillProduct(){
+    int RefillProductCode;
+    puts("(9-3) Which product would you like to refill?");
+    puts("1. A\n2. B\n3. C\n4. D\n5. E\n0. Go back\n");
+    printf("Your choice:"); scanf("%d",&RefillProductCode);
+    moveProductNumber(RefillProductCode);
+}
+```
+
+##### 3.3.6.4 更新商品
+
+用户输入要修改的商品代码进行修改内容
+
+运行界面
+
+关键代码
+
+```
+/*
+商品添加函数
+*/
+void alterProduct(Product product, char productName[20], int productPrice){
+    strcpy(product.productName,productName);
+    product.productPrice = productPrice;
+    product.productNumber = PRODUCTNUMBERMAX;
+}
+/*
+更新商品
+*/
+void ChangeProduct(){
+    int ChangProductCode;
+    char ChangProductName[20];
+    int ChangProductPrice;
+    puts("(4-4) Which product would you like to change?");
+    puts("1. A\n2. B\n3. C\n4. D\n5. E\n0. Go back\n");
+    printf("Your choice:"); scanf("%d",&ChangProductCode);
+    puts("You are changing product\n");
+    printf("Enter new product name:");  scanf("%s",ChangProductName);
+    printf("Enter new product price:"); scanf("%d",&ChangProductPrice);
+    switch (ChangProductCode)
+    {
+    case 1:
+        alterProduct(A,ChangProductName,ChangProductPrice);
+        break;
+    case 2:
+        alterProduct(B,ChangProductName,ChangProductPrice);
+        break;
+    case 3:
+        alterProduct(C,ChangProductName,ChangProductPrice);
+        break;
+    case 4:
+        alterProduct(D,ChangProductName,ChangProductPrice);
+        break;
+    case 5:
+        alterProduct(E,ChangProductName,ChangProductPrice);
+        break;
+    }
+    puts("The new product has been filled to full.");
+
+
+}
+```
+
+##### 3.3.6.5 返回顾客主页
+
+用户选择后，回退到顾客主页
+
+运行界面
+
+关键代码
+
+```
+/*
+返回顾客主页
+*/
+void GoBack(){
+    
+}
+```
+
 #### 3.3.7 退出系统界面
 
-### alterProduct 商品添加函数
+用户选择此选项后，系统退出
 
-    void alterProduct(int productCode, char productName[], int productPrice);
+退出系统界面流程图，流程如下
 
-参数名 | 描述
-----|----
-productCode | 商品编号，1代表A，2代表B···
-productName[] | 商品名称，最长20字符
-productPrice | 商品价格，只接受整数
+<img src="http://yuml.me/diagram/nofunky/activity/(start)->(exit)->(end)" >
 
-管理员可以把某一个商品换成另一个商品，库存自动变为最大值
+运行界面
 
-### moveProductNumber 商品库存修改函数
+关键代码
 
-    void moveProductNumber(int productCode, int ProductNumber);
+```
+/*
+用户退出系统
+*/
+void Quit(){
+    exit(0);
+}
+```
 
-参数名 | 描述
-----|----
-productCode | 商品编号，1代表A，2代表B···
-productNumber | 商品库存
 
-用户购买商品，商品库存 -1 ，管理员上货，库存变成最大值 10 
