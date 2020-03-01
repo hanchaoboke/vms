@@ -140,6 +140,53 @@ Administrator admin;
 
 顾客进入系统，就会显示售货机页面和操作选择页面。售货机页面显示标题，商品代号，价格，商品状态，投币口。操作选择页面有6种选择。
 
+顾客使用主界面流程图，流程如下
+
+<img src="http://yuml.me/diagram/nofunky/activity/(start)->(show mvs and choice)->(insert choice)-><a>-1>(Read product information)->(end),<a>-2>(Insert coin)->(end),<a>[which choice]-3>(Press product button)->(end),<a>-4>(Press return button)->(end),<a>-9>(Open service menu)->(end),<a>-0>(Quit)->(end),<a>-other>(show mvs and choice)" >
+
+顾客进入系统看到贩卖机页面和选择菜单，键入选项后，根据键入的值选择操作，如果键入非法选项，则重新查看贩卖机页面和选择菜单
+
+运行界面
+
+关键代码
+
+```
+/*
+完整的显示贩卖机页面
+可以根据库存显示商品状态
+无库存显示 X
+投入硬币金额等于物品单价显示 O
+*/
+void customerPage();
+void choicePage();
+/*
+显示系统提前设定好的选项，接收选项对应的数字
+1 void Readproductinformation();  查看商品信息
+2 void InsertCoin();  投入硬币
+3 void PressProductButton();  购买商品
+4 void PressReturnButton();  退币
+9 void OpenServiceMenu();  进入管理员选项（需要密码）
+0 void Quit();  退出系统
+*/
+void choiceResultPage(int insertChoice);
+
+customerPage();
+    int insertChoice = -1;
+    while (insertChoice != 1 ||insertChoice != 2 ||insertChoice != 3 ||insertChoice != 4 ||insertChoice != 9 ||insertChoice != 0)
+    {
+        choicePage();
+        printf("Your choice:");  sacnf("%d",&insertChoice);
+        if (insertChoice != 1 ||insertChoice != 2 ||insertChoice != 3 ||insertChoice != 4 ||insertChoice != 9 ||insertChoice != 0)
+        {
+            puts("Invalid choice!");
+        }
+        else
+        {
+            choiceResultPage(insertChoice);
+        } 
+    }
+
+```
 
 
 ### alterProduct 商品添加函数
