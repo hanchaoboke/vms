@@ -1,4 +1,4 @@
-进度 25%
+进度 60%
 
 # 自动贩卖机项目设计
 
@@ -171,8 +171,8 @@ void choicePage();
 void choiceResultPage(int insertChoice);
 
 customerPage();
-    int insertChoice = -1;
-    while (insertChoice != 1 ||insertChoice != 2 ||insertChoice != 3 ||insertChoice != 4 ||insertChoice != 9 ||insertChoice != 0)
+    int insertChoice = 1;
+    while (insertChoice == 1 ||insertChoice == 2 ||insertChoice == 3 ||insertChoice == 4 ||insertChoice == 9 ||insertChoice == 0)
     {
         choicePage();
         printf("Your choice:");  sacnf("%d",&insertChoice);
@@ -187,7 +187,242 @@ customerPage();
     }
 
 ```
+#### 3.3.2 查看商品信息界面
 
+用户选择1后，系统跳转至查看商品信息界面，显示商品对应贩卖机序号，商品名称，商品价格，商品库存
+
+查看商品信息界面流程图，流程如下
+
+<img src="http://yuml.me/diagram/nofunky/activity/(start)->(read product information)->(end)" >
+
+顾客可以查看商品信息
+
+运行界面
+
+关键代码
+
+```
+/*
+商品信息展示，包括商品名称和商品价格
+*/
+void Readproductinformation(){
+    printf("A. %s ($ %d)",A.productName,A.productPrice);
+    printf("B. %s ($ %d)",B.productName,B.productPrice);
+    printf("C. %s ($ %d)",C.productName,C.productPrice);
+    printf("D. %s ($ %d)",D.productName,D.productPrice);
+    printf("E. %s ($ %d)",E.productName,E.productPrice);
+}
+```
+
+#### 3.3.3 投入硬币界面
+
+用户投入给定面值的硬币，投币口自动叠加投入硬币的金额，当投入的硬币金额大于等于商品单价时，亮灯
+
+投入硬币界面流程图，流程如下
+
+<img src="http://yuml.me/diagram/nofunky/activity/(start)->(insert coin)->(change price of product)->(end)" >
+
+用户投入硬币，贩卖机投币口金额叠加，看到贩卖机商品是否可以购买
+
+运行界面
+
+关键代码
+
+```
+/*
+用户只能投入给定面值的硬币，贩卖机的商品状态，投币口金额会发生变化
+*/
+void InsertCoin()
+{
+    int InsertCoin = -1;
+    while (InsertCoin != 0)
+    {
+        // 贩卖机页面
+        customerPage();
+        // 投入硬币页面
+        puts("(2) Which coin would you like to insert?");
+        puts("1. $1");
+        puts("2. $2");
+        puts("3. $5");
+        puts("4. $10");
+        puts("0. Go back\n");
+        printf("Your choice:");
+        scanf("%d", &InsertCoin);
+        switch (InsertCoin)
+        {
+        case 1:
+            coin.conDeposit += coin.coinValueOne;
+            break;
+        case 2:
+            coin.conDeposit += coin.coinValueTwo;
+            break;
+        case 3:
+            coin.conDeposit += coin.coinValueFive;
+            break;
+        case 4:
+            coin.conDeposit += coin.coinValueTen;
+            break;
+        case 0:
+            puts("Going back!");
+            break;
+        default:
+            puts("insert wrong coin");
+            break;
+        }
+    }
+}
+```
+#### 3.3.4 购买商品界面
+
+用户选择想要购买商品的序号，系统自动扣除投币口内的硬币，商品从出货口弹出
+
+购买商品界面流程图，流程如下
+
+<img src="http://yuml.me/diagram/nofunky/activity/(start)->(show product)-><a>[whilch product]->(buy product)->(end)" >
+
+运行界面
+
+关键代码
+
+```
+/*
+商品代码,A,B,C,D,E
+*/
+char producCode;
+/*
+购买商品的业务逻辑
+*/
+void outProduct(Product product,char code,char* producCode){
+    product.productNumber -= 1;
+    *producCode = code;
+    coin.coinProfit += product.productPrice;
+}
+/*
+用户输入商品代号，购买商品
+*/
+void PressProductButton(){
+    int productButton;
+    puts("(3) Which product button would you like to press?");
+    puts("1. A");
+    puts("2. B");
+    puts("3. C");
+    puts("4. D");
+    puts("5. E");
+    puts("0. Go back\n");
+    printf("Your choice:"); scanf("%d",&productButton);
+    switch (productButton)
+    {
+    case 1:
+        puts("You have pressed button A.");
+        outProduct(A,'A',&producCode);
+        break;
+    case 2:
+        puts("You have pressed button B.");
+        outProduct(B,'B',&producCode);
+        break;
+    case 3:
+        puts("You have pressed button C.");
+        outProduct(C,'C',&producCode);
+        break;
+    case 4:
+        puts("You have pressed button D.");
+        outProduct(D,'D',&producCode);
+        break;
+    case 5:
+        puts("You have pressed button E.");
+        outProduct(E,'E',&producCode);
+        break;
+    case 0:
+        puts("Going back!");
+        break;
+    default:
+        puts("wrong choice!");
+        break;
+    }
+    
+}
+```
+
+#### 3.3.5 退币界面
+
+用户选择退币后，投币口清零
+
+退币界面流程图，流程如下
+
+<img src="http://yuml.me/diagram/nofunky/activity/(start)->(return button)->(show mvs and choice)->(end)" >
+
+运行界面
+
+关键代码
+
+```
+/*
+用户退币
+*/
+void PressReturnButton(){
+    coin.conDeposit = 0;
+}
+```
+
+#### 3.3.6 进入管理员用户界面
+
+用户选择管理员后，进行密码验证，验证错误返回主页面，验证正确进入管理员选择菜单
+
+管理员用户界面流程图，流程如下
+
+<img src="http://yuml.me/diagram/nofunky/activity/(start)->(verify password)->(show choice)->(insert choice)-><a>-1>(Inspect machine status)->(end),<a>-2>(Withdraw all money)->(end),<a>[which choice]-3>(Refill product)->(end),<a>-4>()->(end),<a>-9>(Open service menu)->(end),<a>-0>(Quit)->(end),<a>-other>(show choice)" >ß
+
+运行界面
+
+
+关键代码
+
+```
+void adminChoicePage()
+{
+    puts("(9) What would you like to do?");
+    puts("1. Inspect machine status");
+    puts("2. Withdraw all money");
+    puts("3. Refill product");
+    puts("4. Change product");
+    puts("0. Go back\n");
+}
+/*
+显示系统提前设定好的选项，接收选项对应的数字
+1 void InspectMachineStatus();  查看商品信息
+2 void WithdrawAllMoney();  投入硬币
+3 void RefillProduct();  购买商品
+4 void ChangeProduct();  退币
+0 void GoBack();  进入管理员选项（需要密码）
+*/
+void adminChoiceResultPage(int adminChoiceCode);
+
+void administratorPage()
+{
+    int adminPassword;
+    puts("(9) Opening service menu. Access code is required.");
+    printf("Enter access code:");
+    scanf("%d", &adminPassword);
+    if (adminPassword == ADMINPASSWORD)
+    {
+        int adminChoiceCode = 1;
+        puts("Correct code!\n");
+        while (adminChoiceCode == 1 || adminChoiceCode == 2 || adminChoiceCode == 3 || adminChoiceCode == 4 || adminChoiceCode == 0)
+        {
+            adminChoicePage();
+            printf("Your choice:");
+            scanf("%d", &adminChoiceCode);
+            adminChoiceResultPage(adminChoiceCode);
+        }
+    }
+    else
+    {
+        puts("password is wrong");
+    }
+}
+```
+
+#### 3.3.7 退出系统界面
 
 ### alterProduct 商品添加函数
 
