@@ -128,7 +128,7 @@ Coin coin;
 ----|----
 adminLoginPassword | 管理员密码
 
-define ADMINPASSWORD 1110
+define ADMINPASSWORD 1110  管理员默认密码
 
 #### 管理员信息结构体初始化
 
@@ -144,7 +144,7 @@ productCode | 商品编号，1代表A，2代表B···
 productName[] | 商品名称，最长20字符
 productPrice | 商品价格，只接受整数
 
-管理员可以把某一个商品换成另一个商品，库存自动变为最大值 10
+管理员可以把某一个商品换成另一个商品，库存自动变为最大值
 
 ### moveProductNumber 商品库存修改函数
 
