@@ -1,38 +1,17 @@
-/*
-自动售货机项目
-*/
 #include<stdio.h>
-#include<string.h>
+#include"product.h"
+#include"coin.h"
+#include"administrator.h"
+
+// 调用product和coin
+
+Product A, B, C, D, E;
+Coin coin;
 
 /*
-Product商品信息结构体
-productName存储最多20个字符的商品名称,productPrice存储价格，productNumber存储商品库存
-初始化为A，B，C，D，E
+商品代码,A,B,C,D,E
 */
-typedef struct
-{
-    char productName[20];
-    int productPrice;
-    int productNumber;
-}Product;
-// 商品初始化为A，B，C，D，E
-Product A = {"Juice", 10, 5};
-Product B = {"Cola", 6, 1};
-Product C = {"Tea", 5, 2};
-Product D = {"Water", 8, 1};
-Product E = {"Coffee", 7, 9};
-
-typedef struct 
-{
-    int coinValueOne;
-    int coinValueTwo;
-    int coinValueFive;
-    int coinValueTen;
-    int coinProfit;
-    int conDeposit;
-}Coin;
-
-Coin coin = {1,2,5,10,0,0};
+char producCode;
 
 /*
 商品状态函数，可以购买亮O，无库存亮X
@@ -52,16 +31,48 @@ char productStatus(Product product){
         return status = ' ';
     }   
 }
+
 /*
 完整的显示贩卖机页面
 可以根据库存显示商品状态
 无库存显示 X
 投入硬币金额等于物品单价显示 O
 */
-void customerPage();
-void choicePage();
+void customerPage(){
+    puts("*---------------------------*");
+    puts("|     Vending   Machine     |");
+    puts("*---------------------------*");
+    puts("|   A    B    C    D    E   |");
+    printf("|  $%2d  $%2d  $%2d  $%2d  $%2d  |\n",A.productPrice, B.productPrice, C.productPrice, D.productPrice, E.productPrice);
+    printf("|  [%c]  [%c]  [%c]  [%c]  [%c]  |",productStatus(A), productStatus(B), productStatus(C), productStatus(D));
+    puts("*---------------------------*");
+    printf("|                    [$%2d]  |\n",coin.conDeposit);
+    puts("|                           |");
+    printf("|           [=%s=]           |\n",producCode);
+    puts("*---------------------------*");
+
+}
+
 /*
-显示系统提前设定好的选项，接收选项对应的数字进入对应函数
+显示顾客看到的选项菜单
+1. Read product information
+2. Insert coin
+3. Press product button
+4. Press return button
+9. Open service menu (code required)
+0. Quit
+*/
+void choicePage(){
+    puts("1. Read product information");
+    puts("2. Insert coin");
+    puts("3. Press product button");
+    puts("4. Press return button");
+    puts("9. Open service menu (code required)");
+    puts("0. Quit");
+}
+
+/*
+显示系统提前设定好的选项，接收选项对应的数字
 1 void Readproductinformation();  查看商品信息
 2 void InsertCoin();  投入硬币
 3 void PressProductButton();  购买商品
@@ -69,7 +80,30 @@ void choicePage();
 9 void OpenServiceMenu();  进入管理员选项（需要密码）
 0 void Quit();  退出系统
 */
-void choiceResultPage(int insertChoice);
+void choiceResultPage(int insertChoice){
+    switch (insertChoice)
+    {
+    case 1:
+        Readproductinformation();
+        break;
+    case 2:
+        InsertCoin();
+        break;
+    case 3:
+        PressProductButton();
+        break;
+    case 4:
+        PressReturnButton(); 
+        break;
+    case 9:
+        OpenServiceMenu();
+        break;
+    case 0:
+        Quit();
+        break;
+    }
+}
+
 /*
 商品信息展示，包括商品名称和商品价格
 */
@@ -80,16 +114,17 @@ void Readproductinformation(){
     printf("D. %s ($ %d)",D.productName,D.productPrice);
     printf("E. %s ($ %d)",E.productName,E.productPrice);
 }
+
 /*
 用户只能投入给定面值的硬币，贩卖机的商品状态，投币口金额会发生变化
 */
 void InsertCoin()
 {
-    while (1)
+    int InsertCoin = -1;
+    while (InsertCoin != 0)
     {
-        int InsertCoin;
         // 贩卖机页面
-        //void customerPage();
+        customerPage();
         // 投入硬币页面
         puts("(2) Which coin would you like to insert?");
         puts("1. $1");
@@ -114,6 +149,7 @@ void InsertCoin()
             coin.conDeposit += coin.coinValueTen;
             break;
         case 0:
+            puts("Going back!");
             break;
         default:
             puts("insert wrong coin");
@@ -121,10 +157,7 @@ void InsertCoin()
         }
     }
 }
-/*
-商品代码,A,B,C,D,E
-*/
-char producCode;
+
 /*
 购买商品的业务逻辑
 */
@@ -177,43 +210,17 @@ void PressProductButton(){
     }
     
 }
+
 /*
 用户退币
 */
 void PressReturnButton(){
     coin.conDeposit = 0;
 }
+
 /*
 用户退出系统
 */
 void Quit(){
     exit(0);
-}
-int main(int argc, char const *argv[])
-{
-    
-    //printf("%s %d %d",B.name,B.number,B.price);商品信息输出测试
-    //printf("["); productStatus(A); printf("]"); 
-    //productStatus(A,&status);
-
-    customerPage();
-    int insertChoice = -1;
-    while (insertChoice != 1 ||insertChoice != 2 ||insertChoice != 3 ||insertChoice != 4 ||insertChoice != 9 ||insertChoice != 0)
-    {
-        choicePage();
-        printf("Your choice:");  sacnf("%d",&insertChoice);
-        if (insertChoice != 1 ||insertChoice != 2 ||insertChoice != 3 ||insertChoice != 4 ||insertChoice != 9 ||insertChoice != 0)
-        {
-            puts("Invalid choice!");
-        }
-        else
-        {
-            choiceResultPage(insertChoice);
-        } 
-    }
-    
-    
-    
-    printf("[%c]",productStatus(A)); 
-    return 0;
 }
