@@ -1,9 +1,9 @@
-objs = ttest.o protest.o tttfuction.o
+objs = vms.o customer.o administrator.o
   
-test: $(objs)
-	cc $(objs) -o test
+vms: $(objs)
+	cc $(objs) -o vms
 
 .PHONY: clean
 
 clean:
-	rm -f $(objs) test
+	rm -f $(objs) vms

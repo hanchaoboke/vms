@@ -8,6 +8,10 @@
 Product A, B, C, D, E;
 Coin coin;
 
+// 调用administrator
+
+Administrator admin;
+
 /*
 商品代码,A,B,C,D,E
 */

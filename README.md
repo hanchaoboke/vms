@@ -171,8 +171,8 @@ void choicePage();
 void choiceResultPage(int insertChoice);
 
 customerPage();
-    int insertChoice = 1;
-    while (insertChoice == 1 ||insertChoice == 2 ||insertChoice == 3 ||insertChoice == 4 ||insertChoice == 9 ||insertChoice == 0)
+    int insertChoice = -1;
+    while (insertChoice != 1 ||insertChoice != 2 ||insertChoice != 3 ||insertChoice != 4 ||insertChoice != 9 ||insertChoice != 0)
     {
         choicePage();
         printf("Your choice:");  sacnf("%d",&insertChoice);
@@ -405,9 +405,9 @@ void administratorPage()
     scanf("%d", &adminPassword);
     if (adminPassword == ADMINPASSWORD)
     {
-        int adminChoiceCode = 1;
+        int adminChoiceCode = -1;
         puts("Correct code!\n");
-        while (adminChoiceCode == 1 || adminChoiceCode == 2 || adminChoiceCode == 3 || adminChoiceCode == 4 || adminChoiceCode == 0)
+        while (adminChoiceCode != 1 || adminChoiceCode != 2 || adminChoiceCode != 3 || adminChoiceCode != 4 || adminChoiceCode != 0)
         {
             adminChoicePage();
             printf("Your choice:");
