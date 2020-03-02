@@ -36,6 +36,8 @@ char productStatus(Product product){
     }   
 }
 
+
+
 /*
 完整的显示贩卖机页面
 可以根据库存显示商品状态
@@ -52,7 +54,7 @@ void customerPage(){
     puts("*---------------------------*");
     printf("|                    [$%2d]  |\n",coin.conDeposit);
     puts("|                           |");
-    printf("|           [=%s=]           |\n",producCode);
+    printf("|           [=%c=]           |\n",producCode);
     puts("*---------------------------*");
 
 }
@@ -108,16 +110,7 @@ void choiceResultPage(int insertChoice){
     }
 }
 
-/*
-商品信息展示，包括商品名称和商品价格
-*/
-void Readproductinformation(){
-    printf("A. %s ($ %d)",A.productName,A.productPrice);
-    printf("B. %s ($ %d)",B.productName,B.productPrice);
-    printf("C. %s ($ %d)",C.productName,C.productPrice);
-    printf("D. %s ($ %d)",D.productName,D.productPrice);
-    printf("E. %s ($ %d)",E.productName,E.productPrice);
-}
+
 
 /*
 用户只能投入给定面值的硬币，贩卖机的商品状态，投币口金额会发生变化
@@ -226,5 +219,5 @@ void PressReturnButton(){
 用户退出系统
 */
 void Quit(){
-    exit(0);
+    _exit(0);
 }

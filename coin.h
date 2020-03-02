@@ -1,3 +1,5 @@
+#ifndef COIN_H
+#define COIN_H
 #include<stdio.h>
 /*
 Coin商品信息结构体
@@ -13,3 +15,5 @@ typedef struct
     int coinProfit;
     int conDeposit;
 }Coin;
+
+#endif

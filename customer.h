@@ -4,8 +4,7 @@
 
 // 调用product和coin
 
-Product A, B, C, D, E;
-Coin coin;
+extern Product A, B, C, D, E;
 
 /*
 完整的显示贩卖机页面
@@ -68,4 +67,3 @@ void PressProductButton();
 void PressReturnButton(){
     coin.conDeposit = 0;
 }
-

@@ -12,8 +12,8 @@ typedef struct
 
 // 调用product和coin
 
-Product A, B, C, D, E;
-Coin coin;
+extern Product A, B, C, D, E;
+extern Coin coin;
 
 /*
 管理员界面
