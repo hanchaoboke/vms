@@ -1,4 +1,4 @@
-objs = vms.o customer.o administrator.o
+objs = vms.o customer.o administrator.o product.o coin.o 
   
 vms: $(objs)
 	cc $(objs) -o vms
