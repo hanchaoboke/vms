@@ -1,6 +1,8 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include"product.h"
 #include"coin.h"
+#include"customer.h"
 #include"administrator.h"
 
 // 调用product和coin
@@ -10,7 +12,7 @@ Coin coin;
 
 // 调用administrator
 
-Administrator admin;
+extern Administrator admin;
 
 /*
 商品代码,A,B,C,D,E
@@ -33,7 +35,7 @@ char productStatus(Product product){
     if (product.productNumber > 0)
     {
         return status = ' ';
-    }   
+    }  
 }
 
 
@@ -50,7 +52,7 @@ void customerPage(){
     puts("*---------------------------*");
     puts("|   A    B    C    D    E   |");
     printf("|  $%2d  $%2d  $%2d  $%2d  $%2d  |\n",A.productPrice, B.productPrice, C.productPrice, D.productPrice, E.productPrice);
-    printf("|  [%c]  [%c]  [%c]  [%c]  [%c]  |",productStatus(A), productStatus(B), productStatus(C), productStatus(D));
+    printf("|  [%c]  [%c]  [%c]  [%c]  [%c]  |\n",productStatus(A), productStatus(B), productStatus(C), productStatus(D));
     puts("*---------------------------*");
     printf("|                    [$%2d]  |\n",coin.conDeposit);
     puts("|                           |");
@@ -110,7 +112,18 @@ void choiceResultPage(int insertChoice){
     }
 }
 
-
+/*
+商品信息展示，包括商品名称和商品价格
+*/
+void Readproductinformation(){
+    puts("(1) The displayed products are:");
+    printf("A. %s ($%d)\n",A.productName, A.productPrice);
+    printf("B. %s ($%d)\n",B.productName, B.productPrice);
+    printf("C. %s ($%d)\n",C.productName, C.productPrice);
+    printf("D. %s ($%d)\n",D.productName, D.productPrice);
+    printf("E. %s ($%d)\n",E.productName, E.productPrice);
+    puts("\n");
+}
 
 /*
 用户只能投入给定面值的硬币，贩卖机的商品状态，投币口金额会发生变化
@@ -216,8 +229,15 @@ void PressReturnButton(){
 }
 
 /*
+进入管理员选项（需要密码）
+*/
+void OpenServiceMenu(){
+    administratorPage();
+}
+
+/*
 用户退出系统
 */
 void Quit(){
-    _exit(0);
+    exit(0);
 }

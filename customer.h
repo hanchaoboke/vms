@@ -2,10 +2,6 @@
 #include"product.h"
 #include"coin.h"
 
-// 调用product和coin
-
-extern Product A, B, C, D, E;
-
 /*
 完整的显示贩卖机页面
 可以根据库存显示商品状态
@@ -62,8 +58,11 @@ void outProduct(Product product,char code,char* producCode);
 void PressProductButton();
 
 /*
+进入管理员选项（需要密码）
+*/
+void OpenServiceMenu();
+
+/*
 用户退币
 */
-void PressReturnButton(){
-    coin.conDeposit = 0;
-}
+void PressReturnButton();

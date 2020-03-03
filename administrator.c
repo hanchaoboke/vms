@@ -1,8 +1,8 @@
-#include<stdio.h>
-#include<string.h>
-#include"product.h"
-#include"coin.h"
-#include"administrator.h"
+#include <stdio.h>
+#include <string.h>
+#include "product.h"
+#include "coin.h"
+#include "administrator.h"
 
 #define ADMINPASSWORD 1110
 #define PRODUCTNUMBERMAX 10
@@ -12,11 +12,10 @@
 */
 Administrator admin = {ADMINPASSWORD};
 
-
 // 调用product和coin
 
-Product A, B, C, D, E;
-Coin coin;
+extern Product A, B, C, D, E;
+extern Coin coin;
 
 void adminChoicePage()
 {
@@ -29,13 +28,33 @@ void adminChoicePage()
 }
 /*
 显示系统提前设定好的选项，接收选项对应的数字
-1 void InspectMachineStatus();  查看商品信息
-2 void WithdrawAllMoney();  投入硬币
-3 void RefillProduct();  购买商品
-4 void ChangeProduct();  退币
-0 void GoBack();  进入管理员选项（需要密码）
+1 void InspectMachineStatus();  查看机器状态
+2 void WithdrawAllMoney();  取出盈利硬币
+3 void RefillProduct();  填充库存
+4 void ChangeProduct();  更新商品
+0 void GoBack();  返回顾客主页
 */
-void adminChoiceResultPage(int adminChoiceCode);
+void adminChoiceResultPage(int adminChoiceCode)
+{
+    switch (adminChoiceCode)
+    {
+    case 1:
+        InspectMachineStatus();
+        break;
+    case 2:
+        WithdrawAllMoney();
+        break;
+    case 3:
+        RefillProduct();
+        break;
+    case 4:
+        ChangeProduct();
+        break;
+    case 0:
+        GoBack();
+        break;
+    }
+}
 
 void administratorPage()
 {
@@ -64,22 +83,24 @@ void administratorPage()
 /*
 查看机器状态
 */
-void InspectMachineStatus(){
+void InspectMachineStatus()
+{
     puts("(9-1) Machine status");
-    printf("Amount of revenue: $ %d",coin.coinProfit);
-    printf("Amount of inserted coins: $ %d",coin.conDeposit);
-    printf("A. %s ($ %d) ( %d left)",A.productName,A.productPrice,A.productNumber);
-    printf("B. %s ($ %d) ( %d left)",B.productName,B.productPrice,B.productNumber);
-    printf("C. %s ($ %d) ( %d left)",C.productName,C.productPrice,C.productNumber);
-    printf("D. %s ($ %d) ( %d left)",D.productName,D.productPrice,D.productNumber);
-    printf("E. %s ($ %d) ( %d left)",E.productName,E.productPrice,E.productNumber);
+    printf("Amount of revenue: $ %d", coin.coinProfit);
+    printf("Amount of inserted coins: $ %d", coin.conDeposit);
+    printf("A. %s ($ %d) ( %d left)", A.productName, A.productPrice, A.productNumber);
+    printf("B. %s ($ %d) ( %d left)", B.productName, B.productPrice, B.productNumber);
+    printf("C. %s ($ %d) ( %d left)", C.productName, C.productPrice, C.productNumber);
+    printf("D. %s ($ %d) ( %d left)", D.productName, D.productPrice, D.productNumber);
+    printf("E. %s ($ %d) ( %d left)", E.productName, E.productPrice, E.productNumber);
     puts("\n");
 }
 
 /*
 取出盈利的硬币
 */
-void WithdrawAllMoney(){
+void WithdrawAllMoney()
+{
     coin.coinProfit = 0;
     coin.conDeposit = 0;
 }
@@ -87,7 +108,8 @@ void WithdrawAllMoney(){
 /*
 moveProductNumber 商品库存修改函数
 */
-void moveProductNumber(int productCode){
+void moveProductNumber(int productCode)
+{
     switch (productCode)
     {
     case 1:
@@ -115,61 +137,66 @@ void moveProductNumber(int productCode){
 /*
 补充商品库存
 */
-void RefillProduct(){
+void RefillProduct()
+{
     int RefillProductCode;
     puts("(9-3) Which product would you like to refill?");
     puts("1. A\n2. B\n3. C\n4. D\n5. E\n0. Go back\n");
-    printf("Your choice:"); scanf("%d",&RefillProductCode);
+    printf("Your choice:");
+    scanf("%d", &RefillProductCode);
     moveProductNumber(RefillProductCode);
 }
 
 /*
 商品添加函数
 */
-void alterProduct(Product product, char productName[20], int productPrice){
-    strcpy(product.productName,productName);
+void alterProduct(Product product, char productName[20], int productPrice)
+{
+    strcpy(product.productName, productName);
     product.productPrice = productPrice;
     product.productNumber = PRODUCTNUMBERMAX;
 }
 /*
 更新商品
 */
-void ChangeProduct(){
+void ChangeProduct()
+{
     int ChangProductCode;
     char ChangProductName[20];
     int ChangProductPrice;
     puts("(4-4) Which product would you like to change?");
     puts("1. A\n2. B\n3. C\n4. D\n5. E\n0. Go back\n");
-    printf("Your choice:"); scanf("%d",&ChangProductCode);
+    printf("Your choice:");
+    scanf("%d", &ChangProductCode);
     puts("You are changing product\n");
-    printf("Enter new product name:");  scanf("%s",ChangProductName);
-    printf("Enter new product price:"); scanf("%d",&ChangProductPrice);
+    printf("Enter new product name:");
+    scanf("%s", ChangProductName);
+    printf("Enter new product price:");
+    scanf("%d", &ChangProductPrice);
     switch (ChangProductCode)
     {
     case 1:
-        alterProduct(A,ChangProductName,ChangProductPrice);
+        alterProduct(A, ChangProductName, ChangProductPrice);
         break;
     case 2:
-        alterProduct(B,ChangProductName,ChangProductPrice);
+        alterProduct(B, ChangProductName, ChangProductPrice);
         break;
     case 3:
-        alterProduct(C,ChangProductName,ChangProductPrice);
+        alterProduct(C, ChangProductName, ChangProductPrice);
         break;
     case 4:
-        alterProduct(D,ChangProductName,ChangProductPrice);
+        alterProduct(D, ChangProductName, ChangProductPrice);
         break;
     case 5:
-        alterProduct(E,ChangProductName,ChangProductPrice);
+        alterProduct(E, ChangProductName, ChangProductPrice);
         break;
     }
     puts("The new product has been filled to full.");
-
-
 }
 
 /*
 返回顾客主页
 */
-void GoBack(){
-    
+void GoBack()
+{
 }

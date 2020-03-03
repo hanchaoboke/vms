@@ -8,13 +8,13 @@
 #include"administrator.h"
 
 // 调用product
-Product A, B, C, D, E;
+extern Product A, B, C, D, E;
 
 // 调用coin
-Coin coin;
+extern Coin coin;
 
 // 调用administrator
-Administrator admin;
+extern Administrator admin;
 
 int main(int argc, char const *argv[])
 {
@@ -26,7 +26,8 @@ int main(int argc, char const *argv[])
         printf("Your choice:");  scanf("%d",&insertChoice);
         if (insertChoice != 1 ||insertChoice != 2 ||insertChoice != 3 ||insertChoice != 4 ||insertChoice != 9 ||insertChoice != 0)
         {
-            puts("Invalid choice!");
+            printf("end of insertChoice is %d\n",insertChoice);
+            puts("Invalid choice!\n");
         }
         else
         {
