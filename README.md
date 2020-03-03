@@ -169,12 +169,12 @@ void choicePage();
 void choiceResultPage(int insertChoice);
 
 customerPage();
-    int insertChoice = -1;
-    while (insertChoice != 1 ||insertChoice != 2 ||insertChoice != 3 ||insertChoice != 4 ||insertChoice != 9 ||insertChoice != 0)
+    int insertChoice = 1;
+    while (insertChoice == 1 ||insertChoice == 2 ||insertChoice == 3 ||insertChoice == 4 ||insertChoice == 9 ||insertChoice == 0)
     {
         choicePage();
         printf("Your choice:");  sacnf("%d",&insertChoice);
-        if (insertChoice != 1 ||insertChoice != 2 ||insertChoice != 3 ||insertChoice != 4 ||insertChoice != 9 ||insertChoice != 0)
+        if (insertChoice != 1 &&insertChoice != 2 &&insertChoice != 3 &&insertChoice != 4 &&insertChoice != 9 &&insertChoice != 0)
         {
             puts("Invalid choice!");
         }
