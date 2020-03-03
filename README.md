@@ -169,19 +169,20 @@ void choicePage();
 void choiceResultPage(int insertChoice);
 
 customerPage();
-    int insertChoice = 1;
-    while (insertChoice == 1 ||insertChoice == 2 ||insertChoice == 3 ||insertChoice == 4 ||insertChoice == 9 ||insertChoice == 0)
-    {
+    int insertChoice;
+    while(1){
         choicePage();
-        printf("Your choice:");  sacnf("%d",&insertChoice);
+        printf("Your choice:");  scanf("%d",&insertChoice);
         if (insertChoice != 1 &&insertChoice != 2 &&insertChoice != 3 &&insertChoice != 4 &&insertChoice != 9 &&insertChoice != 0)
         {
-            puts("Invalid choice!");
+            puts("Invalid choice!\n");
         }
         else
         {
             choiceResultPage(insertChoice);
         } 
+        if(insertChoice == 0)
+            exit(0);
     }
 
 ```
@@ -294,6 +295,7 @@ void outProduct(Product product,char code,char* producCode){
     product.productNumber -= 1;
     *producCode = code;
     coin.coinProfit += product.productPrice;
+    coin.conDeposit -= product.productPrice;
 }
 /*
 用户输入商品代号，购买商品

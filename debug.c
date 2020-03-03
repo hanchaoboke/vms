@@ -1,21 +1,37 @@
 #include<stdio.h>
+#include<stdlib.h>
 
-
-char lights_up(int money,int price[],int stock[]){
-    char status = ' ';
-    if(money == *price)
-        status = 'O';
-    if(*stock == 0)
-        status = 'X';
-    return status;
-}
+typedef struct
+{
+    char productName[20];
+    int productPrice;
+    int productNumber;
+}Product;
+Product A = {"Juice", 10, 5};
+/*
+商品添加函数
+*/
+// void alterProduct(Product product, char productName[], int productPrice)
+// {
+//     //strcpy(product.productName, productName);
+//     product.productNumber = productName;
+//     product.productPrice = productPrice;
+//     product.productNumber = 10;
+// }
 
 int main(){
+    // char ChangProductName[20] = "";
+    // int ChangProductPrice;
 
-int price[5] = {1,2,3,4,5};
-int stock[5] = {0,2,3,4,5};
+    // scanf("%s",ChangProductName);
+    // scanf("%d",&ChangProductPrice);
 
-printf("%ca \n",lights_up(3,&price[1],&stock[1]));
+    // alterProduct(A, ChangProductName, ChangProductPrice);
+
+    // printf("%s\n%d\n",A.productName,A.productPrice);
+
+    scanf("%s",A.productName);
+    printf("%s",A.productName);
 
     return 0;
 }

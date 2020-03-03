@@ -18,25 +18,23 @@ extern Administrator admin;
 /*
 商品代码,A,B,C,D,E
 */
-char producCode;
+char producCode = '=';
 
 /*
 商品状态函数，可以购买亮O，无库存亮X
 */
 char productStatus(Product product){
-    char status;
+    char status = ' ';
     if (product.productNumber == 0)
     {
-        return status = 'X';
+        status = 'X';
     }
-    if (product.productPrice == coin.conDeposit)
+    if (coin.conDeposit >= product.productPrice)
     {
-       return  status = 'O';
+        status = 'O';
     }
-    if (product.productNumber > 0)
-    {
-        return status = ' ';
-    }  
+    return status;
+    
 }
 
 
@@ -53,7 +51,7 @@ void customerPage(){
     puts("*---------------------------*");
     puts("|   A    B    C    D    E   |");
     printf("|  $%2d  $%2d  $%2d  $%2d  $%2d  |\n",A.productPrice, B.productPrice, C.productPrice, D.productPrice, E.productPrice);
-    printf("|  [%c]  [%c]  [%c]  [%c]  [%c]  |\n",productStatus(A), productStatus(B), productStatus(C), productStatus(D));
+    printf("|  [%c]  [%c]  [%c]  [%c]  [%c]  |\n",productStatus(A), productStatus(B), productStatus(C), productStatus(D), productStatus(E));
     puts("*---------------------------*");
     printf("|                    [$%2d]  |\n",coin.conDeposit);
     puts("|                           |");
@@ -176,11 +174,13 @@ void outProduct(Product product,char code,char* producCode){
     product.productNumber -= 1;
     *producCode = code;
     coin.coinProfit += product.productPrice;
+    coin.conDeposit -= product.productPrice;
 }
 /*
 用户输入商品代号，购买商品
 */
 void PressProductButton(){
+    customerPage();
     int productButton;
     puts("(3) Which product button would you like to press?");
     puts("1. A");
@@ -219,6 +219,7 @@ void PressProductButton(){
         puts("wrong choice!");
         break;
     }
+    customerPage();
     
 }
 
@@ -227,6 +228,7 @@ void PressProductButton(){
 */
 void PressReturnButton(){
     coin.conDeposit = 0;
+    puts("\n");
 }
 
 /*

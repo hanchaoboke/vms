@@ -64,7 +64,7 @@ void RefillProduct();
 /*
 商品添加函数
 */
-void alterProduct(Product product, char productName[20], int productPrice);
+void alterProduct(Product product);
 
 /*
 更新商品

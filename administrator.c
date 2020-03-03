@@ -150,11 +150,12 @@ void RefillProduct()
 /*
 商品添加函数
 */
-void alterProduct(Product product, char productName[20], int productPrice)
+void alterProduct(Product product)
 {
-    strcpy(product.productName, *productName);
-    product.productPrice = productPrice;
-    product.productNumber = PRODUCTNUMBERMAX;
+    printf("Enter new product name:");
+    scanf("%s", product.productName);
+    printf("Enter new product price:");
+    scanf("%d", product.productPrice);
 }
 /*
 更新商品
@@ -168,27 +169,27 @@ void ChangeProduct()
     puts("1. A\n2. B\n3. C\n4. D\n5. E\n0. Go back\n");
     printf("Your choice:");
     scanf("%d", &ChangProductCode);
-    puts("You are changing product\n");
-    printf("Enter new product name:");
-    scanf("%s", ChangProductName);
-    printf("Enter new product price:");
-    scanf("%d", &ChangProductPrice);
     switch (ChangProductCode)
     {
     case 1:
-        alterProduct(A, &ChangProductName, ChangProductPrice);
+        puts("You are changing product A");
+        alterProduct(A);
         break;
     case 2:
-        alterProduct(B, &ChangProductName, ChangProductPrice);
+        puts("You are changing product B");
+        alterProduct(B);
         break;
     case 3:
-        alterProduct(C, &ChangProductName, ChangProductPrice);
+        puts("You are changing product C");
+        alterProduct(C);
         break;
     case 4:
-        alterProduct(D, &ChangProductName, ChangProductPrice);
+        puts("You are changing product D");
+        alterProduct(D);
         break;
     case 5:
-        alterProduct(E, &ChangProductName, ChangProductPrice);
+        puts("You are changing product E");
+        alterProduct(E);
         break;
     }
     puts("The new product has been filled to full.");
