@@ -86,13 +86,13 @@ void administratorPage()
 void InspectMachineStatus()
 {
     puts("(9-1) Machine status");
-    printf("Amount of revenue: $ %d", coin.coinProfit);
-    printf("Amount of inserted coins: $ %d", coin.conDeposit);
-    printf("A. %s ($ %d) ( %d left)", A.productName, A.productPrice, A.productNumber);
-    printf("B. %s ($ %d) ( %d left)", B.productName, B.productPrice, B.productNumber);
-    printf("C. %s ($ %d) ( %d left)", C.productName, C.productPrice, C.productNumber);
-    printf("D. %s ($ %d) ( %d left)", D.productName, D.productPrice, D.productNumber);
-    printf("E. %s ($ %d) ( %d left)", E.productName, E.productPrice, E.productNumber);
+    printf("Amount of revenue: $ %d\n", coin.coinProfit);
+    printf("Amount of inserted coins: $ %d\n", coin.conDeposit);
+    printf("A. %s ($ %d) ( %d left)\n", A.productName, A.productPrice, A.productNumber);
+    printf("B. %s ($ %d) ( %d left)\n", B.productName, B.productPrice, B.productNumber);
+    printf("C. %s ($ %d) ( %d left)\n", C.productName, C.productPrice, C.productNumber);
+    printf("D. %s ($ %d) ( %d left)\n", D.productName, D.productPrice, D.productNumber);
+    printf("E. %s ($ %d) ( %d left)\n", E.productName, E.productPrice, E.productNumber);
     puts("\n");
 }
 
@@ -152,7 +152,7 @@ void RefillProduct()
 */
 void alterProduct(Product product, char productName[20], int productPrice)
 {
-    strcpy(product.productName, productName);
+    strcpy(product.productName, *productName);
     product.productPrice = productPrice;
     product.productNumber = PRODUCTNUMBERMAX;
 }
@@ -162,7 +162,7 @@ void alterProduct(Product product, char productName[20], int productPrice)
 void ChangeProduct()
 {
     int ChangProductCode;
-    char ChangProductName[20];
+    char *ChangProductName;
     int ChangProductPrice;
     puts("(4-4) Which product would you like to change?");
     puts("1. A\n2. B\n3. C\n4. D\n5. E\n0. Go back\n");
@@ -176,19 +176,19 @@ void ChangeProduct()
     switch (ChangProductCode)
     {
     case 1:
-        alterProduct(A, ChangProductName, ChangProductPrice);
+        alterProduct(A, &ChangProductName, ChangProductPrice);
         break;
     case 2:
-        alterProduct(B, ChangProductName, ChangProductPrice);
+        alterProduct(B, &ChangProductName, ChangProductPrice);
         break;
     case 3:
-        alterProduct(C, ChangProductName, ChangProductPrice);
+        alterProduct(C, &ChangProductName, ChangProductPrice);
         break;
     case 4:
-        alterProduct(D, ChangProductName, ChangProductPrice);
+        alterProduct(D, &ChangProductName, ChangProductPrice);
         break;
     case 5:
-        alterProduct(E, ChangProductName, ChangProductPrice);
+        alterProduct(E, &ChangProductName, ChangProductPrice);
         break;
     }
     puts("The new product has been filled to full.");
